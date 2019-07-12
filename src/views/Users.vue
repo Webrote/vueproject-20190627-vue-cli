@@ -10,7 +10,7 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 import UsersList from '@/components/UsersList.vue'
 
 export default {
@@ -20,6 +20,20 @@ export default {
   },
   data: () => ({
     users: []
-  })
+  }),
+  mounted() {
+    this.loadUsers()
+  },
+  methods: {
+    loadUsers() {
+      let url = 'http://localhost:3004/users'
+      axios
+        .get(url)
+        .then(response => response.data)
+        .then(users => {
+          this.users = users
+        })
+    }
+  }
 }
 </script>

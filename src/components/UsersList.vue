@@ -14,44 +14,39 @@
     </thead>
     <tbody>
       <tr v-for="user in users" :key="user.id">
+        <td># {{ user.id }}</td>
         <td>
-          # {{ user.id }}
+          {{ user.firstName }}
         </td>
         <td>
-          {{ user.firstName}}
+          {{ user.lastName }}
         </td>
         <td>
-          {{ user.lastName}}
+          {{ user.isActive }}
         </td>
         <td>
-          {{ user.isActive}}
+          {{ user.balance }}
         </td>
         <td>
-          {{ user.balance}}
+          {{ user.email }}
         </td>
         <td>
-          {{ user.email}}
+          {{ user.phone }}
         </td>
         <td>
-          {{ user.phone}}
-        </td>
-        <td>
-          {{ user.registered}}
+          {{ user.registered }}
         </td>
       </tr>
     </tbody>
     <tfoot>
       <tr>
-        <th colspan="8">
-          Всего пользователей: {{ total }}
-        </th>
+        <th colspan="8">Всего пользователей: {{ total }}</th>
       </tr>
     </tfoot>
   </table>
 </template>
 
 <script>
-
 export default {
   name: 'UsersList',
   props: {
@@ -62,7 +57,7 @@ export default {
   },
   computed: {
     total() {
-      return this.users.length;
+      return this.users.length
     }
   }
 }
