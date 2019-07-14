@@ -1,16 +1,17 @@
 <template>
   <div>
-    USER EDIT {{ id }}
-
     <div v-if="!user">
       Загрузка...
     </div>
 
     <div v-else>
+      <h2>Редактирование пользователя #{{ user.id }}</h2>
       <user-form v-model="user" />
-      <pre>PARENT {{ user }}</pre>
       <button type="button" class="btn btn-primary" @click="save()">
         Save
+      </button>
+      <button type="button" class="btn btn-danger" @click="remove()">
+        Remove user
       </button>
     </div>
   </div>
@@ -40,9 +41,6 @@ export default {
     this.loadUser()
   },
   methods: {
-    test() {
-      this.$router.push('/')
-    },
     loadUser() {
       axios
         .get(this.url)
@@ -53,6 +51,12 @@ export default {
     save() {
       axios
         .patch(this.url, this.user)
+        .then(() => this.$router.push('/users'))
+        .catch(error => console.error(error))
+    },
+    remove() {
+      axios
+        .delete(this.url)
         .then(() => this.$router.push('/users'))
         .catch(error => console.error(error))
     }

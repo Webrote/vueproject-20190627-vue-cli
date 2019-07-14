@@ -53,15 +53,19 @@
       <input type="text" class="form-control" v-model="localUser.registered" />
     </div>
 
-    <pre>USERFORM {{ localUser }}</pre>
+    <pre>ADDFORM {{ localUser }}</pre>
   </div>
 </template>
 
 <script>
 export default {
   name: 'UserForm',
+  model: {
+    prop: 'user',
+    event: 'megaevent'
+  },
   props: {
-    value: {
+    user: {
       type: Object,
       required: true
     }
@@ -85,12 +89,12 @@ export default {
     localUser: {
       deep: true,
       handler() {
-        this.$emit('input', Object.assign({}, this.localUser))
+        this.$emit('megaevent', Object.assign({}, this.localUser))
       }
     }
   },
   created() {
-    this.localUser = Object.assign({}, this.value)
+    this.localUser = Object.assign({}, this.user)
   }
 }
 </script>

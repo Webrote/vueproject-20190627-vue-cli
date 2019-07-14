@@ -5,7 +5,9 @@
     <div v-if="!users.length" class="alert alert-warning">
       Загрузка...
     </div>
-    <users-list v-else :users="users"></users-list>
+    <div v-else>
+      <users-list :users="users" @remove="remove"></users-list>
+    </div>
   </div>
 </template>
 
@@ -14,7 +16,7 @@ import axios from 'axios'
 import UsersList from '@/components/UsersList.vue'
 
 export default {
-  name: 'UsersList',
+  name: 'Users',
   components: {
     'users-list': UsersList
   },
@@ -26,14 +28,21 @@ export default {
   },
   methods: {
     loadUsers() {
-      let url = 'http://localhost:3004/users'
       axios
-        .get(url)
+        .get('http://localhost:3004/users')
         .then(response => response.data)
         .then(users => {
           this.users = users
         })
         .catch(error => console.error(error))
+    },
+    remove(id) {
+      axios
+        .delete('http://localhost:3004/users/' + id)
+        .then(() => this.loadUsers())
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }
