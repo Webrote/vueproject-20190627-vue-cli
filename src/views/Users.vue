@@ -33,6 +33,7 @@ export default {
         .then(users => {
           this.users = users
         })
+        .catch(error => console.error(error))
     }
   }
 }
