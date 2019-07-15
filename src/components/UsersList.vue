@@ -7,22 +7,7 @@
       </div>
     </div>
 
-    <div class="p-3">
-      <div class="row">
-        <div class="col-2">
-          <div class="form-group">
-            <select class="form-control">
-              <option>10</option>
-              <option>20</option>
-              <option>30</option>
-              <option>40</option>
-              <option>50</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      Выбранно элементов на страницу
-    </div>
+    <users-itemsperpage :options="itemsPerPageOptions" v-model="itemsPerPage"></users-itemsperpage>
 
     <div class="p-3">
       <table class="table table-striped">
@@ -39,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="user in users" :key="user.id">
+          <tr v-for="user in usersFiltered" :key="user.id">
             <td>
               <router-link :to="'/users/' + user.id"> #{{ user.id }} </router-link>
             </td>
@@ -78,11 +63,13 @@
 
 <script>
 import UsersPagination from '@/components/UsersPagination.vue'
+import UsersItemsPerPage from '@/components/UsersItemsPerPage.vue'
 
 export default {
   name: 'UsersList',
   components: {
-    'users-pagination': UsersPagination
+    'users-pagination': UsersPagination,
+    'users-itemsperpage': UsersItemsPerPage
   },
   props: {
     users: {
@@ -91,14 +78,45 @@ export default {
     }
   },
   data: () => ({
-    currentPage: 1
+    currentPage: 1,
+    itemsPerPageOptions: [
+      {
+        text: 5,
+        value: 5,
+        selected: false
+      },
+      {
+        text: 15,
+        value: 15,
+        selected: true
+      },
+      {
+        text: 30,
+        value: 30,
+        selected: false
+      },
+      {
+        text: 'Все',
+        value: Infinity,
+        selected: false
+      }
+    ],
+    itemsPerPage: 5
   }),
   computed: {
     total() {
       return this.users.length
     },
     pagesAmount() {
-      return Math.ceil(this.users.length / 5)
+      return Math.ceil(this.users.length / this.itemsPerPage)
+    },
+    usersFiltered() {
+      return this.users.slice( ( this.currentPage - 1 ) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
+    }
+  },
+  watch: {
+    itemsPerPage() {
+      console.log(this.itemsPerPage)
     }
   },
   methods: {
