@@ -78,7 +78,7 @@ export default {
     }
   },
   data: () => ({
-    currentPage: 1,
+    currentPage: 2,
     itemsPerPageOptions: [
       {
         text: 5,
@@ -111,7 +111,10 @@ export default {
       return Math.ceil(this.users.length / this.itemsPerPage)
     },
     usersFiltered() {
-      return this.users.slice( ( this.currentPage - 1 ) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
+      return this.users.slice(
+        (this.currentPage - 1) * this.itemsPerPage,
+        this.currentPage * this.itemsPerPage
+      )
     }
   },
   watch: {

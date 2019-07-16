@@ -5,6 +5,16 @@
       <ul class="pagination">
         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
 
+        <router-link
+          v-for="item in amount"
+          :key="item"
+          to="/users?page="
+          tag="li"
+          class="page-item"
+        >
+          <a class="page-link">{{ item }}</a>
+        </router-link>
+
         <li v-for="item in amount" class="page-item" :key="item">
           <a class="page-link" href="#">{{ item }}</a>
         </li>
