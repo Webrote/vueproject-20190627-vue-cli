@@ -2,8 +2,11 @@
   <div>
     <user-form v-model="user" />
 
-    <button type="button" class="btn btn-primary" @click="addUser()">
+    <button type="button" class="btn btn-primary" @click="addUser">
       Add user
+    </button>
+    <button type="button" class="btn btn-success" @click="goBack">
+      Back to list
     </button>
   </div>
 </template>
@@ -23,9 +26,6 @@ export default {
   computed: {
     url() {
       return 'http://localhost:3004/users/'
-    },
-    stringifyUser() {
-      return JSON.stringify(this.user)
     }
   },
   methods: {
@@ -36,10 +36,16 @@ export default {
         .then(response => {
           console.log(response)
         })
-        .then(() => this.$router.push('/users'))
+        .then(() => this.routerPush('/users'))
         .catch(error => {
           console.log(error)
         })
+    },
+    goBack() {
+      this.routerPush('/users')
+    },
+    routerPush(url) {
+      this.$router.push(url)
     }
   }
 }

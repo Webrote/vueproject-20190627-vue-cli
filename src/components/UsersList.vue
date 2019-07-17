@@ -24,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="user in usersFiltered" :key="user.id">
+          <tr v-for="(user, index) in usersFiltered" :key="user.id">
             <td>
               <router-link :to="'/users/' + user.id"> #{{ user.id }} </router-link>
             </td>
@@ -50,7 +50,9 @@
               {{ user.registered }}
             </td>
             <td>
-              <button class="btn btn-danger" @click="removeUser(user.id)">X</button>
+              <button type="button" class="btn btn-danger" @click="removeUser(user.id, index)">
+                X
+              </button>
             </td>
           </tr>
         </tbody>
@@ -78,17 +80,18 @@ export default {
     }
   },
   data: () => ({
-    currentPage: 2,
+    currentPage: 1,
+    itemsPerPage: 5,
     itemsPerPageOptions: [
       {
         text: 5,
         value: 5,
-        selected: false
+        selected: true
       },
       {
         text: 15,
         value: 15,
-        selected: true
+        selected: false
       },
       {
         text: 30,
@@ -100,8 +103,7 @@ export default {
         value: Infinity,
         selected: false
       }
-    ],
-    itemsPerPage: 5
+    ]
   }),
   computed: {
     total() {
@@ -110,11 +112,11 @@ export default {
     pagesAmount() {
       return Math.ceil(this.users.length / this.itemsPerPage)
     },
+    newIndex() {
+      return (this.currentPage - 1) * this.itemsPerPage
+    },
     usersFiltered() {
-      return this.users.slice(
-        (this.currentPage - 1) * this.itemsPerPage,
-        this.currentPage * this.itemsPerPage
-      )
+      return this.users.slice(this.newIndex, this.currentPage * this.itemsPerPage)
     }
   },
   watch: {
@@ -123,7 +125,8 @@ export default {
     }
   },
   methods: {
-    removeUser(id) {
+    removeUser(id, index) {
+      this.users.splice(this.newIndex + index, 1)
       this.$emit('remove', id)
     }
   }

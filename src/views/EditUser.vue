@@ -7,10 +7,10 @@
     <div v-else>
       <h2>Редактирование пользователя #{{ user.id }}</h2>
       <user-form v-model="user" />
-      <button type="button" class="btn btn-primary" @click="save()">
+      <button type="button" class="btn btn-primary" @click="save">
         Save
       </button>
-      <button type="button" class="btn btn-danger" @click="remove()">
+      <button type="button" class="btn btn-danger" @click="remove">
         Remove user
       </button>
     </div>
@@ -51,14 +51,17 @@ export default {
     save() {
       axios
         .patch(this.url, this.user)
-        .then(() => this.$router.push('/users'))
+        .then(() => this.routerPush('/users'))
         .catch(error => console.error(error))
     },
     remove() {
       axios
         .delete(this.url)
-        .then(() => this.$router.push('/users'))
+        .then(() => this.routerPush('/users'))
         .catch(error => console.error(error))
+    },
+    routerPush(url) {
+      this.$router.push(url)
     }
   }
 }

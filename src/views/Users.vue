@@ -29,7 +29,7 @@ export default {
     urlBase: 'http://localhost:3004/users'
   }),
   mounted() {
-    this.loadUsers();    
+    this.loadUsers()
   },
   methods: {
     loadUsers() {
@@ -37,16 +37,16 @@ export default {
         .get(this.urlBase)
         .then(response => response.data)
         .then(users => {
-          this.users = users;
+          this.users = users
           this.loading = false
-          console.log(this.users);
+          console.log(this.users)
         })
         .catch(error => console.error(error))
     },
     remove(id) {
       axios
         .delete(this.urlBase + '/' + id)
-        .then(() => this.loadUsers())
+        .then()
         .catch(error => {
           console.log(error)
         })
