@@ -34,7 +34,7 @@ export default {
       return this.$route.params.id
     },
     url() {
-      return 'http://localhost:3004/users/' + this.id
+      return `http://localhost:3004/users/${this.id}`
     }
   },
   mounted() {

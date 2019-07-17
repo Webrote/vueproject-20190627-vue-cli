@@ -25,6 +25,7 @@ export default {
   }),
   mounted() {
     this.loadUsers()
+    console.log(this.users)
   },
   methods: {
     loadUsers() {
@@ -38,7 +39,7 @@ export default {
     },
     remove(id) {
       axios
-        .delete('http://localhost:3004/users/' + id)
+        .delete(`http://localhost:3004/users/${id}`)
         .then(() => this.loadUsers())
         .catch(error => {
           console.log(error)

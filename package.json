@@ -9,8 +9,8 @@
     "fake": "json-server --watch db.json --port 3004"
   },
   "dependencies": {
-    "axios": "^0.19.0",
-    "bootstrap": "^4.3.1",
+    "axios": "0.19.0",
+    "bootstrap": "4.3.1",
     "core-js": "^2.6.5",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3"

@@ -15,9 +15,9 @@
           <a class="page-link">{{ item }}</a>
         </router-link>
 
-        <li v-for="item in amount" class="page-item" :key="item">
+        <!-- <li v-for="item in amount" class="page-item" :key="item">
           <a class="page-link" href="#">{{ item }}</a>
-        </li>
+        </li> -->
 
         <li class="page-item"><a class="page-link" href="#">Next</a></li>
       </ul>
