@@ -2,8 +2,11 @@
   <div>
     <h2>Список пользователей</h2>
 
-    <div v-if="!users.length" class="alert alert-warning">
+    <div v-if="loading" class="alert alert-warning">
       Загрузка...
+    </div>
+    <div v-else-if="!users.length" class="alert alert-warning">
+      Пользователей в базе нет..
     </div>
     <div v-else>
       <users-list :users="users" @remove="remove"></users-list>
@@ -21,25 +24,28 @@ export default {
     'users-list': UsersList
   },
   data: () => ({
-    users: []
+    loading: true,
+    users: [],
+    urlBase: 'http://localhost:3004/users'
   }),
   mounted() {
-    this.loadUsers()
-    console.log(this.users)
+    this.loadUsers();    
   },
   methods: {
     loadUsers() {
       axios
-        .get('http://localhost:3004/users')
+        .get(this.urlBase)
         .then(response => response.data)
         .then(users => {
-          this.users = users
+          this.users = users;
+          this.loading = false
+          console.log(this.users);
         })
         .catch(error => console.error(error))
     },
     remove(id) {
       axios
-        .delete(`http://localhost:3004/users/${id}`)
+        .delete(this.urlBase + '/' + id)
         .then(() => this.loadUsers())
         .catch(error => {
           console.log(error)

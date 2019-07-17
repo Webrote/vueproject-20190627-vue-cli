@@ -305,22 +305,6 @@
       "registered": "08.08.2016"
     },
     {
-      "id": 22,
-      "isActive": true,
-      "balance": "$1,037.37",
-      "picture": "http://placehold.it/128x128",
-      "age": 30,
-      "accessLevel": "admin",
-      "firstName": "Castaneda",
-      "lastName": "Bray",
-      "company": "GENMEX",
-      "email": "castaneda.bray@genmex.biz",
-      "phone": "+7 (898) 449-2610",
-      "address": "742 Elliott Walk, Wanship, Kansas, 7986",
-      "about": "Esse exercitation elit eiusmod deserunt est labore fugiat occaecat ullamco irure labore mollit labore. Cupidatat laborum cupidatat veniam ipsum adipisicing sunt sunt minim dolore labore ipsum laborum aliqua duis. Ullamco sint mollit minim sint elit ullamco et est pariatur nulla ipsum est. Eiusmod commodo duis proident est fugiat cillum pariatur minim irure et enim aliqua ut aute.",
-      "registered": "24.07.2016"
-    },
-    {
       "id": 23,
       "isActive": false,
       "balance": "$2,407.08",
