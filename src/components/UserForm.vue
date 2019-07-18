@@ -51,15 +51,23 @@
     <div class="form-group">
       <label>Дата регистрации</label>
       <input type="text" class="form-control" v-model="localUser.registered" />
+
+      <datepicker v-model="localUser.registered" />
     </div>
 
+    <br />
     <pre>ADDFORM {{ localUser }}</pre>
   </div>
 </template>
 
 <script>
+import Datepicker from '@/components/datepicker.vue'
+
 export default {
   name: 'UserForm',
+  components: {
+    Datepicker
+  },
   model: {
     prop: 'user',
     event: 'megaevent'

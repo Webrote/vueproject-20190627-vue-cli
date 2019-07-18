@@ -9,7 +9,13 @@
       Пользователей в базе нет..
     </div>
     <div v-else>
-      <users-list :users="users" @remove="remove"></users-list>
+      <users-list :users="users" @remove="remove">
+        <template slot="header">
+          <button type="button" class="btn btn-primary" @click="loadUsers">
+            Reload table
+          </button>
+        </template>
+      </users-list>
     </div>
   </div>
 </template>

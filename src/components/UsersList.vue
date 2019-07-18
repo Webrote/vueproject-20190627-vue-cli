@@ -10,6 +10,9 @@
     <users-itemsperpage :options="itemsPerPageOptions" v-model="itemsPerPage"></users-itemsperpage>
 
     <div class="p-3">
+      <slot name="header">
+        Заголовок таблицы по умолчанию
+      </slot>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -57,7 +60,9 @@
           </tr>
         </tbody>
       </table>
-
+      <slot name="footer">
+        Подвал таблицы по умолчанию
+      </slot>
       <users-pagination :amount="pagesAmount"></users-pagination>
     </div>
   </div>
