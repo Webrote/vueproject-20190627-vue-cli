@@ -15,48 +15,38 @@
       </slot>
       <table class="table table-striped">
         <thead>
-          <tr>
-            <th>#</th>
-            <th>Имя</th>
-            <th>Фамилия</th>
-            <th>Активен</th>
-            <th>Баланс</th>
-            <th>Email</th>
-            <th>Телефон</th>
-            <th>Зарегистрирован</th>
-          </tr>
+          <slot name="table-header">
+            <tr>
+              <th>#</th>
+              <th>Имя</th>
+              <th>Фамилия</th>
+              <th>Активен</th>
+              <th>Баланс</th>
+              <th>Email</th>
+              <th>Телефон</th>
+              <th>Зарегистрирован</th>
+            </tr>
+          </slot>
         </thead>
         <tbody>
           <tr v-for="(user, index) in usersFiltered" :key="user.id">
-            <td>
-              <router-link :to="'/users/' + user.id"> #{{ user.id }} </router-link>
-            </td>
-            <td>
-              {{ user.firstName }}
-            </td>
-            <td>
-              {{ user.lastName }}
-            </td>
-            <td>
-              {{ user.isActive }}
-            </td>
-            <td>
-              {{ user.balance }}
-            </td>
-            <td>
-              {{ user.email }}
-            </td>
-            <td>
-              {{ user.phone }}
-            </td>
-            <td>
-              {{ user.registered }}
-            </td>
-            <td>
-              <button type="button" class="btn btn-danger" @click="removeUser(user.id, index)">
-                X
-              </button>
-            </td>
+            <slot name="table-row" :user="user" :childTest="childTest">
+              <td>
+                <router-link :to="'/users/' + user.id"> #{{ user.id }} </router-link>
+              </td>
+              <td>{{ user.firstName }}</td>
+              <td>{{ user.lastName }}</td>
+              <td>{{ user.isActive }}</td>
+              <td>{{ user.balance }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.phone }}</td>
+              <td>{{ user.registered }}</td>
+              <td>
+                <button type="button" class="btn btn-danger" @click="removeUser(user.id, index)">
+                  X
+                </button>
+              </td>
+            </slot>
           </tr>
         </tbody>
       </table>
@@ -133,6 +123,9 @@ export default {
     removeUser(id, index) {
       this.users.splice(this.newIndex + index, 1)
       this.$emit('remove', id)
+    },
+    childTest() {
+      alert('Child')
     }
   }
 }
