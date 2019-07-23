@@ -10,10 +10,37 @@
     </div>
     <div v-else>
       <users-list :users="users" @remove="remove">
-        <template slot="header">
+        <template v-slot:header>
           <button type="button" class="btn btn-primary" @click="loadUsers">
             Reload table
           </button>
+        </template>
+        <template v-slot:footer>
+          Самый классный футер
+        </template>
+        <template v-slot:table-header>
+          <tr>
+            <th>#</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Телефон</th>
+          </tr>
+        </template>
+        <template v-slot:table-row="{ user, childTest }">
+          <!-- <td>{{ props }}</td> -->
+          <td>
+            <router-link :to="'/users/' + user.id"> #{{ user.id }} </router-link>
+
+            <button type="button" class="btn btn-primary" @click="parentTest">
+              PARENT
+            </button>
+            <button type="button" class="btn btn-primary" @click="childTest">
+              CHILD
+            </button>
+          </td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.phone }}</td>
         </template>
       </users-list>
     </div>
@@ -56,6 +83,9 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    },
+    parentTest() {
+      alert('Parent')
     }
   }
 }

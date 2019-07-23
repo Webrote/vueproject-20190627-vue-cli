@@ -21,7 +21,21 @@ export default {
     UserForm
   },
   data: () => ({
-    user: {}
+    user: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      picture: '',
+      age: '',
+      isActive: '',
+      accessLevel: '',
+      balance: '',
+      phone: '',
+      address: '',
+      company: '',
+      about: '',
+      registered: ''
+    }
   }),
   computed: {
     url() {
