@@ -51,17 +51,17 @@ export default {
     save() {
       axios
         .patch(this.url, this.user)
-        .then(() => this.routerPush('/users'))
+        .then(this.routerPush('/users'))
         .catch(error => console.error(error))
     },
     remove() {
       axios
         .delete(this.url)
-        .then(() => this.routerPush('/users'))
+        .then(this.routerPush('/users'))
         .catch(error => console.error(error))
     },
     routerPush(url) {
-      this.$router.push(url)
+      return this.$router.push(url)
     }
   }
 }

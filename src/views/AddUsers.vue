@@ -36,7 +36,7 @@ export default {
         .then(response => {
           console.log(response)
         })
-        .then(() => this.routerPush('/users'))
+        .then(this.routerPush('/users'))
         .catch(error => {
           console.log(error)
         })
@@ -45,7 +45,7 @@ export default {
       this.routerPush('/users')
     },
     routerPush(url) {
-      this.$router.push(url)
+      return this.$router.push(url)
     }
   }
 }
