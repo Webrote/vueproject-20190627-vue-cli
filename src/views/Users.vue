@@ -10,7 +10,7 @@
     </div>
     <div v-else>
       <users-list :users="users" @remove="remove">
-        <template v-slot:header>
+        <!-- <template v-slot:header>
           <button type="button" class="btn btn-primary" @click="loadUsers">
             Reload table
           </button>
@@ -27,7 +27,6 @@
           </tr>
         </template>
         <template v-slot:table-row="{ user, childTest }">
-          <!-- <td>{{ props }}</td> -->
           <td>
             <router-link :to="'/users/' + user.id"> #{{ user.id }} </router-link>
 
@@ -41,7 +40,7 @@
           <td>{{ user.firstName }}</td>
           <td>{{ user.lastName }}</td>
           <td>{{ user.phone }}</td>
-        </template>
+        </template> -->
       </users-list>
     </div>
   </div>
